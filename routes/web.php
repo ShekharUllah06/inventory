@@ -19,16 +19,17 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    //return view('dashboard');
+    return view('pages.product');
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/about', function(){
     echo "<h2> This is About Page</h2>";
 });
-Route::get('/product', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/product', function () {
     return view('pages.product');
 });
 
-Route::get('/account', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/account', function () {
     return view('pages.account');
 });
