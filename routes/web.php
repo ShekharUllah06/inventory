@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\getproductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/product', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/account', function () {
     return view('pages.account');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/getproduct',[getproductController::class, 'index']);
+
+Route::post('/createproduct', [getproductController::class, 'store']);

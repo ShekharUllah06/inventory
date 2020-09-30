@@ -1,14 +1,24 @@
 @extends('layouts.master')
 @section('page_title', 'Add New Product')
+@section('page_description', 'You can add new product from this page')
 @section('content')
+<?php
+
+    use App\Models\Product;
+
+    $code = Product::count();
+    $code = $code + 1;
+?>
 <div class="main-card mb-3 card">
     <div class="card-body">
         <h5 class="card-title">Product Entry Form</h5>
-        <form class="needs-validation" novalidate>
+
+        <form class="needs-validation" novalidate method="POST" action="/createproduct">
+            @csrf
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Date</label>
-                    <input type="date" class="form-control" id="validationCustom01" required>
+                    <label for="dtp">Date</label>
+                    <input name="dtp" type="date" class="form-control" id="dtp" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -19,8 +29,11 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Code</label>
-                    <input type="text" disabled="true" class="form-control" id="validationCustom01" placeholder="Product Code" value="P-0001" required>
+                    <label for="txtCode">Code</label>
+
+                    <input name="txtCode" type="text" disabled="true" class="form-control" id="txtCode" placeholder="Product Code" value='<?php
+echo $code;
+?>' required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -29,10 +42,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Product Name</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="Product Name" required>
+
+                    <label for="txtProductName">Product Name</label>
+                    <input type="text" class="form-control" id="txtProductName" name="txtProductName" placeholder="Product Name" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -44,8 +59,8 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Unit</label>
-                    <input type="number" min="0" class="form-control" id="validationCustom01" placeholder="Product Unit" required>
+                    <label for="txtUnit">Unit</label>
+                    <input name="txtUnit" type="number" min="0" class="form-control" id="txtUnit" placeholder="Product Unit" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -56,9 +71,9 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Product Group</label>
+                    <label for="drpdwnProductType">Product Group</label>
                     <br>
-                    <select name="cars" id="cars" required class="form-control">
+                    <select name="drpdwnProductType" id="drpdwnProductType" required class="form-control">
                         <option value="Type 1">Type 1</option>
                         <option value="Type 2">Type 2</option>
                         <option value="Type 3">Type 3</option>
@@ -74,20 +89,8 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Unit</label>
-                    <input type="number" min="0" class="form-control" id="validationCustom01" placeholder="Product Unit" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please choose a product unit.
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Purchase Price</label>
-                    <input type="number" min="0" class="form-control" id="validationCustom01" placeholder="Purchase Price" required>
+                    <label for="txtPurchasePrice">Purchase Price</label>
+                    <input name="txtPurchasePrice" type="number" min="0" class="form-control" id="txtPurchasePrice" placeholder="Purchase Price" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -98,8 +101,8 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Sale Price</label>
-                    <input type="number" min="0" class="form-control" id="validationCustom01" placeholder="Sale price" required>
+                    <label for="txtSalesPrice">Sale Price</label>
+                    <input name="txtSalesPrice" type="number" min="0" class="form-control" id="txtSalesPrice" placeholder="Sale price" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -110,13 +113,12 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Status</label>
+                    <label for="drpdwnStatus">Status</label>
                     <br>
-                    <select name="cars" id="cars" required class="form-control">
-                        <option value="Status 1">Status 1</option>
-                        <option value="Status 2">Status 2</option>
-                        <option value="Status 3">Status 3</option>
-                        <option value="Status 4">Status 4</option>
+                    <select name="drpdwnStatus" id="drpdwnStatus" required class="form-control">
+                        <option value="1">Active</option>
+                        <option value="2">Inactive</option>
+
                     </select>
                     <div class="valid-feedback">
                         Looks good!

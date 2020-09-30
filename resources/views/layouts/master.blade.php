@@ -137,14 +137,14 @@
                             <ul class="vertical-nav-menu">
 
                                 <li class="app-sidebar__heading">Product</li>
-                                <li style="background-color: green;">
-                                    <a href="/product" style="color: white;">
+                                <li>
+                                    <a href="/product" >
                                         <i class="metismenu-icon fa fa-plus">
                                         </i>New Product
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/getproduct">
                                         <i class="metismenu-icon fa fa-list">
                                         </i>Product List
                                     </a>
@@ -192,7 +192,8 @@
                                         </i>
                                     </div>
                                     <div>@yield('page_title')
-                                        <div class="page-title-subheading">Build whatever layout you need with our Architect framework.
+                                        <div class="page-title-subheading">
+                                            @yield('page_description')
                                         </div>
                                     </div>
                                 </div>
